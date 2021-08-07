@@ -7,19 +7,19 @@ const cors = require("cors");
 
 // create mongoose server
 mongoose
-  .connect("mongodb://localhost:27017/groceryList-hooksContext-backend",{
+  .connect("mongodb://localhost:27017/groceryList-backend", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("MongoDB connected for groceryList hooks & context");
+    console.log("MongoDB connected!");
   })
   .catch((e) => {
     console.log(e);
   });
 
-const groceryListRouter = require("./routes/groceryList/groceryListRouter");
-const app = express();
+var groceryListRouter = require("./routes/groceryList/groceryListRouter");
+var app = express();
 
 app.use(cors());
 app.use(logger('dev'));
@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // is groceryList router
-app.use("/api/v1/groceryList", groceryListRouter);
+app.use("/api/groceryList", groceryListRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
