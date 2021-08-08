@@ -64,7 +64,17 @@ async function sortGroceryByPurchased(req, res) {
     }
 };
 
-async function sortGroceryByDate() {};
+async function sortGroceryByDate(req, res) {
+    try{
+        let sort = req.query.sort;
+        let sortOrder = sort === "desc" ? -1 : 1;
+        let foundGrocery = await Grocery.find({}).sort({dateAdded: sortOrder});
+
+        res.json({ payload: foundGrocery });
+    } catch(e) {
+        console.log(e);
+    }
+};
 
 module.exports = {
     getAllGroceries,
