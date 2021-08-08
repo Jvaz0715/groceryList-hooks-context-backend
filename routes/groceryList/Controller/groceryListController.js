@@ -25,7 +25,7 @@ async function createGrocery(req, res) {
 
 async function updateGrocery(req, res) {
     try {
-        let updatedGrocery = await Grocery.findByIdAndUpdate(req.params.id, req.body, {new: true } );
+        let updatedGrocery = await Grocery.findByIdAndUpdate(req.params.id, req.body, {new: true });
 
         res.json({ payload: updatedGrocery });
     } catch (e) {
@@ -33,18 +33,26 @@ async function updateGrocery(req, res) {
     }
 };
 
-async function deleteGrocery() {};
+async function deleteGrocery(req, res) {
+    try {
+        let deletedGrocery = await Grocery.findByIdAndDelete(req.params.id);
 
-async function sortGroceryByPurchased() {};
+        res.json({ payload: deletedGrocery});
+    } catch (e) {
+        res.status(500).json({ message: e.message, error: e });
+    }
+};
 
-async function sortGroceryByDate() {};
+// async function sortGroceryByPurchased() {};
+
+// async function sortGroceryByDate() {};
 
 module.exports = {
     getAllGroceries,
     createGrocery,
     updateGrocery,
     deleteGrocery,
-    sortGroceryByPurchased,
-    sortGroceryByDate,
+    // sortGroceryByPurchased,
+    // sortGroceryByDate,
 }
 
