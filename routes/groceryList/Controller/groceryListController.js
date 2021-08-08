@@ -43,16 +43,35 @@ async function deleteGrocery(req, res) {
     }
 };
 
-// async function sortGroceryByPurchased() {};
+async function sortGroceryByPurchased(req, res) {
+    try {
+        let isPurchased = req.query.isPurchased;
+        let isPurchasedOrder = isPurchased === "true" ? true : false;
+        let sortByDate = req.query.sort ? req.query.sort : null;
+        let finalSort;
 
-// async function sortGroceryByDate() {};
+        if(!sortByDate) {
+            finalSort = null;
+        } else {
+            finalSort = sortByDate === "asc" ? 1 : -1;
+        };
+
+        let foundGrocery = await Grocery.find({ isPurchased: isPurchasedOrder}).sort({dateAdded: finalSort });
+
+        res.json({ payload: foundGrocery });
+    } catch(e) {
+        res.status(500).json({ message: e.message, error: e });
+    }
+};
+
+async function sortGroceryByDate() {};
 
 module.exports = {
     getAllGroceries,
     createGrocery,
     updateGrocery,
     deleteGrocery,
-    // sortGroceryByPurchased,
-    // sortGroceryByDate,
+    sortGroceryByPurchased,
+    sortGroceryByDate,
 }
 

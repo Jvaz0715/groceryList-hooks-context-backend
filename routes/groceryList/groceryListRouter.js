@@ -6,8 +6,8 @@ const {
     createGrocery,
     updateGrocery,
     deleteGrocery,
-    // sortGroceryByPurchased,
-    // sortGroceryByDate,
+    sortGroceryByPurchased,
+    sortGroceryByDate,
 } = require("./Controller/groceryListController");
 
 /* GET Home Page */
@@ -23,8 +23,8 @@ router.put("/update-grocery-by-id/:id", updateGrocery);
 
 router.delete("/delete-grocery-by-id/:id", deleteGrocery);
 
-// router.get("/get-groceries-by-purchased", sortGroceryByPurchased);
+router.get("/get-groceries-by-purchased", sortGroceryByPurchased);
 
-// router.get("/get-groceries-by-sort", sortGroceryByDate);
+router.get("/get-groceries-by-sort", sortGroceryByDate);
 
 module.exports = router;
