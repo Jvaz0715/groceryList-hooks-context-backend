@@ -25,6 +25,6 @@ router.delete("/delete-grocery-by-id/:id", deleteGrocery);
 
 router.get("/get-groceries-by-purchased", sortGroceryByPurchased);
 
-route.get("/get-groceries-by-sort", sortGroceryByDate);
+router.get("/get-groceries-by-sort", sortGroceryByDate);
 
 module.exports = router;

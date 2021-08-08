@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const grocerySchema = new.mongoose.Schema({
+const grocerySchema = new mongoose.Schema({
 
     grocery: {
         type: String,
