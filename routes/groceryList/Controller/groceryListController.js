@@ -23,7 +23,15 @@ async function createGrocery(req, res) {
     }
 };
 
-async function updateGrocery() {};
+async function updateGrocery(req, res) {
+    try {
+        let updatedGrocery = await Grocery.findByIdAndUpdate(req.params.id, req.body, {new: true } );
+
+        res.json({ payload: updatedGrocery });
+    } catch (e) {
+        res.status(500).json({ message: e.message, error: e });
+    }
+};
 
 async function deleteGrocery() {};
 
